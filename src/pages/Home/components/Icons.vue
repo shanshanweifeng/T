@@ -1,10 +1,10 @@
 <template>
     <div class="icons">
         <swiper :options="swiperOption">
-        <swiper-slide v-for="(a,index) of pages" :key="index">
-        <div class="icon" v-for="item of a" :key="item.id">
+        <swiper-slide v-for="(list,index) of pages" :key="index">
+        <div class="icon" v-for="item of list" :key="item.id">
             <div class="icon-img"><img class="icon-imgcontent" :src='item.imgUrl'></div>
-            <p class="icon-main">{{item.des}}</p>
+            <p class="icon-main">{{item.desc}}</p>
         </div>
         </swiper-slide>
         </swiper>
@@ -14,63 +14,21 @@
 <script>
 export default {
     name: 'HomeIcons',
+    props: {
+        list:Array
+    },
     data(){
         return{
         swiperOption: {
             loop: false,
             autoplay:false
-      },
-        iconList:[{
-            id:'001',
-            des:'景点门票',
-            imgUrl:"https://imgs.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png"
-        },
-        {
-            id:'002',
-            des:'古镇',
-            imgUrl:"https://imgs.qunarzz.com/piao/fusion/1803/67/9a1678221b8e0e02.png"
-        },
-        {
-            id:'003',
-            des:'亲子游',
-            imgUrl:"https://imgs.qunarzz.com/piao/fusion/1803/50/26ffa31b56646402.png"
-        },
-        {
-            id:'004',
-            des:'苏州园林',
-            imgUrl:"https://imgs.qunarzz.com/piao/fusion/1803/17/99402a22ce4af302.png"
-        },
-        {
-            id:'005',
-            des:'寒山寺',
-            imgUrl:"https://imgs.qunarzz.com/piao/fusion/1803/fa/2548667cb6e902.png"
-        },{
-            id:'006',
-            des:'华谊兄弟',
-            imgUrl:"https://img1.qunarzz.com/piao/fusion/1803/20/831d62d2e1c7be02.png"
-        },{
-            id:'007',
-            des:'狮子林',
-            imgUrl:"https://imgs.qunarzz.com/piao/fusion/1803/90/59a2f523ee2f9202.png"
-        },{
-            id:'008',
-            des:'拙政园',
-            imgUrl:"https://imgs.qunarzz.com/piao/fusion/1803/20/831d62d2e1c7be02.png"
-        },{
-            id:'009',
-            des:'虎丘',
-            imgUrl:"https://imgs.qunarzz.com/piao/fusion/1803/20/831d62d2e1c7be02.png"
-        },{
-            id:'010',
-            des:'上方山',
-            imgUrl:"https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20193/ac9ef584416467d8cc557aad650959fd.png"
-        }]
-        }
+      }
+    }
     },
         computed: {
             pages(){
                 const pages = [];
-                this.iconList.forEach((item,index)=>{
+                this.list.forEach((item,index)=>{
                     const page = Math.floor(index/8)
                     if(!pages[page]){
                         pages[page] = []
