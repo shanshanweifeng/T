@@ -17,14 +17,14 @@
           </div>
         </div>
       </div>
-      <div class="area" v-for="(item,key) of cities" :key="key">
+      <div class="area" v-for="(item,key) of cities" :key="key" :ref="key">
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
-          <div class="item border-bottom" 
-               v-for="inneritem of item" 
-               :key="inneritem.id">
-               {{inneritem.name}}
-          </div>
+          <div
+            class="item border-bottom"
+            v-for="inneritem of item"
+            :key="inneritem.id"
+          >{{inneritem.name}}</div>
         </div>
       </div>
     </div>
@@ -32,15 +32,26 @@
 </template>
 
 <script>
-import Bscroll from 'better-scroll'
+import Bscroll from "better-scroll";
 export default {
   name: "CityList",
   props: {
     cities: Object,
-    hot: Array
+    hot: Array,
+    changeletter: String
   },
-  mounted () {
-      this.scroll = new Bscroll(this.$refs.wrapper)
+  mounted() {
+    this.scroll = new Bscroll(this.$refs.wrapper);
+  },
+  watch: {
+    changeletter() {
+      // console.log(this.changeletter);
+      // alert("adasd");
+      if (this.changeletter) {
+        const element = this.$refs[this.changeletter][0]
+        this.scroll.scrollToElement(element) 
+      }
+    }
   }
 };
 </script>
@@ -81,9 +92,9 @@ export default {
 
   .button-list {
     overflow: hidden;
-    padding .1rem .4rem .1rem .1rem;
-    // margin: 0 auto;
+    padding: 0.1rem 0.4rem 0.1rem 0.1rem;
 
+    // margin: 0 auto;
     .button-wrapper {
       float: left;
       width: 33.33%;
