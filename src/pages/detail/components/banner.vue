@@ -8,7 +8,7 @@
           </div>
           <div class="banner-number">
               <span class="iconfont">&#xe692;</span>
-              48
+              30
           </div>
       </div>
     </div>
@@ -18,6 +18,7 @@
 
 <script>
 import CommonGallery from 'common/gallery/Gallery'
+import axios from "axios"
 export default {
     name: 'bannerimg',
     data () {
@@ -32,11 +33,25 @@ export default {
         },
         handGalleryclose () {
             this.showGallery = false
+        },
+        getBannerImgInfo () {
+            axios.get('/api/index.json')
+            .then(this.getHomeInfoSucc)
+        },
+        getHomeInfoSucc (b) {
+            var rest 
+            rest = b.data
+            if (rest.ret && rest.data) {
+                this.imgs = rest.data.imgs
+            }
         }
     },
     components:{
         CommonGallery
-    } 
+    },
+    mounted () {
+    this.getBannerImgInfo()
+  } 
 }
 </script>
 

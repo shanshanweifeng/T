@@ -2,8 +2,8 @@
   <div class="container" @click="handGalleryclick">
     <div class="wrapper">
       <swiper :options="swiperOption">
-        <swiper-slide v-for="(item,index) in chuandiimgs" :key="index">
-          <img class="swiper-img" :src="item"/>
+        <swiper-slide v-for="(item,id) in chuandiimgs" :key="id">
+          <img class="swiper-img" :src="item.imgUrl"/>
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -15,12 +15,7 @@
 export default {
   name: "CommonGallery",
   props:{
-      chuandiimgs:{
-          type:Array,
-          default () {
-              return []
-          }
-      }
+      chuandiimgs:Array
   },
   data () {
       return {
