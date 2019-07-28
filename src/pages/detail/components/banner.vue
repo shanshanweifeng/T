@@ -12,12 +12,16 @@
           </div>
       </div>
     </div>
-    <CommonGallery :chuandiimgs="imgs" v-show="showGallery" @close="handGalleryclose" class="imgscenter"></CommonGallery>
+    <Fade>
+        <CommonGallery :chuandiimgs="imgs" v-show="showGallery" @close="handGalleryclose" class="imgscenter"></CommonGallery>
+    </Fade>
+    
    </div>
 </template>
 
 <script>
 import CommonGallery from 'common/gallery/Gallery'
+import Fade from 'common/fade/Fade'
 import axios from "axios"
 export default {
     name: 'bannerimg',
@@ -47,7 +51,8 @@ export default {
         }
     },
     components:{
-        CommonGallery
+        CommonGallery,
+        Fade
     },
     mounted () {
     this.getBannerImgInfo()
