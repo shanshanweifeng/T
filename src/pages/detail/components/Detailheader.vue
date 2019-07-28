@@ -24,7 +24,7 @@ export default {
   },
   methods:{
     handlescroll() {
-      console.log(1);
+      // console.log(1); 全局组件解绑
       const top = document.documentElement.scrollTop
       if (top>60) {
         const opacity = top/140
@@ -67,6 +67,7 @@ export default {
 }
 
 .detail-title {
+  z-index 2
   position: fixed;
   top: 0;
   left: 0;

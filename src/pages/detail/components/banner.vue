@@ -12,7 +12,7 @@
           </div>
       </div>
     </div>
-    <CommonGallery :chuandiimgs="imgs" v-show="showGallery" @close="handGalleryclose"></CommonGallery>
+    <CommonGallery :chuandiimgs="imgs" v-show="showGallery" @close="handGalleryclose" class="imgscenter"></CommonGallery>
    </div>
 </template>
 
@@ -83,4 +83,7 @@ export default {
                 border-radius .2rem
                 background rgba(0,0,0,.8)
                 font-size .24rem
+    .imgscenter
+             display flex
+             justify-content: space-between  
 </style>
