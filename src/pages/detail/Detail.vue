@@ -32,16 +32,18 @@ export default {
         params:{
           id: this.$route.params.id
         }
+      }).then(res =>{
+        res =  res.data
+        if(res.ret && res.data){
+          const data = res.data
+          this.categoryList = data.categoryList
+          console.log(this.categoryList)
+        }
       })
-      .then (this.handleGetDataSucc)
+      // .then (this.handleGetDataSucc)
     },
     handleGetDataSucc(res) {
-      res =  res.data
-      if(res.ret && res.data){
-        const data = res.data
-        this.categoryList = data.categoryList
-        console.log(this.categoryList)
-      }
+      
     }
   },
   mounted () {
